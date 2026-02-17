@@ -20,4 +20,6 @@ const studentSchema = new mongoose.Schema(
     }
 )
 
- export default studentSchema
+const Student = mongoose.model('Student', studentSchema)
+
+export default Student
