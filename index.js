@@ -2,6 +2,7 @@ import express from 'express'
 import { config } from 'dotenv'
 import connectDB from './src/configs/database.js'
 import loginRouter from '../e-voting-backend/src/routes/student.route.js'
+import adminRouter from './src/routes/admin.route.js'  
 
 const app = express()
 
@@ -22,6 +23,7 @@ const startServer = async () => {
 }
 
 app.use('/student', loginRouter);
+app.use('/admin', adminRouter);
 
 startServer()
 
