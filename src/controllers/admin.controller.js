@@ -35,7 +35,7 @@ const adminController = async (req, res) => {
 const adminLoginController = async (req,res) => {
     try {
         const { email, password } = req.body;
-        const loginAdmin = await AdminLogin.findOne({ email });
+        const loginAdmin = await Admin.findOne({ email });
         if (!loginAdmin) {
             return res.status(404).json({
                 message: "admin not found"
