@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
-import Admin from '../modules/admin.module.js'
-import AdminLogin from '../modules/admin.module.js'
+import { Admin, AdminLogin } from '../modules/admin.module.js'
 import bcrypt from 'bcrypt'
 
 
@@ -15,11 +14,11 @@ const adminController = async (req, res) => {
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const saveAdmin = {
+        const saveAdmin = new Admin({
             name,   
             email,
             password: hashedPassword
-        };
+        });
         await saveAdmin.save();
         res.status(201).json({
             message:'Admin registered successfully'
