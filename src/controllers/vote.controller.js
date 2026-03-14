@@ -35,4 +35,22 @@ const voteController = async (req, res) => {
     }
 }
 
-export default voteController
+const getVotesByElection = async (req, res) => {
+    try {
+        const { electionId } = req.params;
+        const votes = await Vote.find({ electionId }).populate('candidate', 'name position');
+        res.status(200).json({
+            message: "votes retrieved successfully",
+            data: votes
+        })
+    } catch (error) {
+        console.log('failed to retrieve votes', error);
+        res.status(500).json({
+            message: "server error"
+        })
+    }
+}
+
+
+
+export {voteController, getVotesByElection}
