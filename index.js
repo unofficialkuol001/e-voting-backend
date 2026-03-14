@@ -1,5 +1,6 @@
 import express from 'express'
 import { config } from 'dotenv'
+import cors from 'cors'
 import connectDB from './src/configs/database.js'
 import loginRouter from '../e-voting-backend/src/routes/student.route.js'
 import adminRouter from './src/routes/admin.route.js'  
@@ -12,6 +13,7 @@ const app = express()
 config()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cors())
 const PORT = process.env.PORT || 3000
 
 const startServer = async () => {
