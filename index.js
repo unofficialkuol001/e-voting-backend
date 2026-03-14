@@ -7,6 +7,7 @@ import adminRouter from './src/routes/admin.route.js'
 import electionRouter from './src/routes/election.route.js'
 import candidateRouter from './src/routes/candidate.route.js'
 import voteRouter from './src/routes/vote.route.js'
+import getVoteRouter from './src/routes/vote.route.js'
 
 const app = express()
 
@@ -32,6 +33,7 @@ app.use('/admin', adminRouter);
 app.use('/election', electionRouter);
 app.use('/candidate', candidateRouter);
 app.use('/vote', voteRouter);
+app.use('/vote', getVoteRouter);
 
 
 startServer()
