@@ -18,7 +18,10 @@ const voteSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Election"
         },
-        votedAt: new Date()
+        votedAt: {
+            type: Date,
+            default: Date.now
+        }
     },
     {
         timestamps: true
