@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
-import Election from './election.module.js';
-
+import Election from './election.module.js'
 
 const candidateSchema = new mongoose.Schema(
     {
@@ -10,7 +9,8 @@ const candidateSchema = new mongoose.Schema(
         },
         electionId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref:"Election"
+            ref: "Election",
+            required: true
         }
     },
     {
@@ -18,6 +18,6 @@ const candidateSchema = new mongoose.Schema(
     }
 )
 
-const Candidate = mongoose.model('Candidate', candidateSchema);
+const Candidate = mongoose.model('Candidate', candidateSchema)
 
 export default Candidate
