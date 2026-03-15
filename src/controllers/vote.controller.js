@@ -38,7 +38,9 @@ const voteController = async (req, res) => {
 const getVotesByElection = async (req, res) => {
     try {
         const { electionId } = req.params;
-        const votes = await Vote.find({ electionId }).populate('candidate', 'name position');
+        const votes = await Vote.find({ electionId: new mongoose.Types.ObjectId(electionId) })
+            .populate('candidate','name')
+            .populate('studentId','name');
         res.status(200).json({
             message: "votes retrieved successfully",
             data: votes
