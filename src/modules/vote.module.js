@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-import Student from '../modules/student.module.js'
-import Candidate from '../modules/candidate.module.js'
-import Election from '../modules/election.module.js'
+// import Student from '../modules/student.module.js'
+// import Candidate from '../modules/candidate.module.js'
+// import Election from '../modules/election.module.js'
 
 
 const voteSchema = new mongoose.Schema(
@@ -16,7 +16,8 @@ const voteSchema = new mongoose.Schema(
         },
         electionId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Election"
+            ref: "Election",
+            required: true
         },
         votedAt: {
             type: Date,
