@@ -4,16 +4,16 @@ import Candidate from "../modules/candidate.module.js"
 
 const candidateController = async (req, res) => {
     try {
-        const { name, position } = req.body;
-        const existingCandidate = await Candidate.findOne({ name, position });
+        const { name, electionId } = req.body;
+        const existingCandidate = await Candidate.findOne({ name, electionId });
         if (existingCandidate) {
             return res.status(409).json({
-                message: "candidate already exists for this position"
+                message: "candidate already exists for this election"
             })
         }   
         const newCandidate = new Candidate({
             name,
-            position    
+            electionId    
         });
         await newCandidate.save();
         res.status(201).json({
