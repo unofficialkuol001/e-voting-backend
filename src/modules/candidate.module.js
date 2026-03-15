@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import Election from './election.module.js'
 
 const candidateSchema = new mongoose.Schema(
     {
