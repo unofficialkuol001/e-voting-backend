@@ -33,7 +33,6 @@ app.use('/admin', adminRouter);
 app.use('/election', electionRouter);
 app.use('/candidate', candidateRouter);
 app.use('/vote', voteRouter);
-app.use('/vote', getVoteRouter);
 
 
 startServer()
