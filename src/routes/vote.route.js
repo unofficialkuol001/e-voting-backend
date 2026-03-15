@@ -3,7 +3,7 @@ import {voteController, getVotesByElection } from '../controllers/vote.controlle
 
 const router = express.Router();
 
-router.post('/', voteController);
+router.post('/candidate', voteController);
 router.get('/election/:electionId', getVotesByElection);
 
 export default router;
