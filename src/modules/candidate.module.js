@@ -10,6 +10,14 @@ const candidateSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Election",
             required: true
+        },
+        position: {
+            type: String,
+            required: true
+        },
+        isDeleted: {
+            type: Boolean,
+            default: false
         }
     },
     {
