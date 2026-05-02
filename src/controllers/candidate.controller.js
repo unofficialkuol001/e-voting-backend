@@ -3,8 +3,9 @@ import Vote from "../modules/vote.module.js"
 import Candidate from "../modules/candidate.module.js"
 
 const candidateController = async (req, res) => {
+   
     try {
-        const { name, electionId } = req.body;
+        const { name, electionId, position } = req.body;
         const existingCandidate = await Candidate.findOne({ name, electionId });
         if (existingCandidate) {
             return res.status(409).json({
@@ -13,7 +14,8 @@ const candidateController = async (req, res) => {
         }   
         const newCandidate = new Candidate({
             name,
-            electionId    
+            electionId,
+            position
         });
         await newCandidate.save();
         res.status(201).json({
@@ -27,4 +29,18 @@ const candidateController = async (req, res) => {
     }
 }
 
-export default candidateController
+const getCandidates = async (req, res) => {
+    try {
+        const selectedCandidates = await Candidate.find();
+        res.status(200).json({
+            candidates: selectedCandidates
+        })
+    } catch (error) {
+        console.log('failed to get candidates', error);
+        res.status(500).json({
+            message: "server error"
+        })
+    }
+}
+
+export  {   candidateController, getCandidates }
