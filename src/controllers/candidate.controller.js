@@ -43,4 +43,32 @@ const getCandidates = async (req, res) => {
     }
 }
 
-export  {   candidateController, getCandidates }
+const deleteCandidate = async (req, res) => {
+    try {
+        const { candidateId } = req.body;
+        const toDeleteCandidate = await Candidate.findByIdAndUpdate(
+            candidateId,
+            {
+                isDeleted: true,
+                deletedAt: new Date()
+            },
+            {new:true}
+        );
+        if (!toDeleteCandidate) {
+            res.status(404).json({
+                message:"candidate not FOUND"
+            })
+        }
+        res.json({
+            message: "Candidate soft deleted",
+            toDeleteCandidate
+        })
+        
+    } catch (error) {
+        res.status(500).json({
+            message:"Server error"
+        })
+    }
+}
+
+export  {   candidateController, getCandidates, deleteCandidate }
